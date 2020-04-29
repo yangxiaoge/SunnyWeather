@@ -10,17 +10,45 @@ android {
         applicationId "com.yjn.sunnyweather.android"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.0.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    buildTypes {
+    signingConfigs {
+        debug {
+            storeFile file(KEY_PATH)
+            storePassword STORE_PASSWORD
+            keyAlias = ALIAS_NAME
+            keyPassword KEY_PASSWORD
+        }
         release {
+            storeFile file(KEY_PATH)
+            storePassword STORE_PASSWORD
+            keyAlias = ALIAS_NAME
+            keyPassword KEY_PASSWORD
+        }
+    }
+
+    buildTypes {
+        debug{
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+        release {
+            debuggable true
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
+    }
+
+    android.applicationVariants.all {
+        variant ->
+            variant.outputs.all {
+                outputFileName = "SunnyWeather" + "-v" + versionName + ".apk"
+            }
     }
 
     compileOptions {
