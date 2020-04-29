@@ -1,6 +1,7 @@
 package com.yjn.sunnyweather.android
 
 import android.app.Application
+import android.content.Context
 
 /**
  * <pre>
@@ -12,11 +13,13 @@ import android.app.Application
  */
 class SunnyWeatherApplication : Application() {
     companion object {
-        const val CAIYUN_TOKEN = "BNBRvBveaD2VfHVI"; //彩云天气申请到的令牌值
+        const val CAIYUN_TOKEN = "TAkhjf8d1nlSlspN"; //彩云天气申请到的令牌值
+
+        lateinit var context: Context
     }
 
     override fun onCreate() {
         super.onCreate()
-
+        context = applicationContext
     }
 }
