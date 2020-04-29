@@ -40,7 +40,7 @@ class PlaceFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         val layoutManager = LinearLayoutManager(activity)
         recyclerview.layoutManager = layoutManager
-        adapter = PlaceAdapter(viewModel.placeList)
+        adapter = PlaceAdapter(this, viewModel.placeList)
         recyclerview.adapter = adapter
         searchPlace.addTextChangedListener { editable ->
             val content = editable.toString()
