@@ -40,6 +40,7 @@ class PlaceFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        //上次是否有缓存过地区城市
         if (viewModel.isPlaceSaved()) {
             val place = viewModel.getSavedPlace()
             val intent = Intent(context, WeatherActivity::class.java).apply {
@@ -66,6 +67,7 @@ class PlaceFragment : Fragment() {
                 adapter.notifyDataSetChanged()
             }
         }
+        //观察placeLiveData数据变化
         viewModel.placeLiveData.observe(this, Observer { result ->
             val places = result.getOrNull()
             if (places != null) {
