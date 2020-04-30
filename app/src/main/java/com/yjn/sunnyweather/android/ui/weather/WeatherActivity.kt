@@ -21,6 +21,7 @@ import com.yjn.sunnyweather.android.logic.model.Weather
 import com.yjn.sunnyweather.android.logic.model.getSky
 import kotlinx.android.synthetic.main.activity_weather.*
 import kotlinx.android.synthetic.main.forecast.*
+import kotlinx.android.synthetic.main.fragment_place.view.*
 import kotlinx.android.synthetic.main.life_index.*
 import kotlinx.android.synthetic.main.now.*
 import java.text.SimpleDateFormat
@@ -103,6 +104,16 @@ class WeatherActivity : AppCompatActivity() {
             }
 
             override fun onDrawerOpened(drawerView: View) {
+                //自动填充当前位置
+                placeFragment.searchPlace
+                    .also {
+                        if (it.text.toString() == viewModel.placeName)
+                            return
+                    }
+                    .apply {
+                        setText(viewModel.placeName)
+                        setSelection(viewModel.placeName.length)
+                    }
             }
         })
     }
@@ -134,7 +145,8 @@ class WeatherActivity : AppCompatActivity() {
             val skyInfo = view.findViewById(R.id.skyInfo) as TextView
             val temperatureInfo = view.findViewById(R.id.temperatureInfo) as TextView
             val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-            dateInfo.text = simpleDateFormat.format(skycon.date)
+            val today = simpleDateFormat.format(skycon.date) == simpleDateFormat.format(Date())
+            dateInfo.text = if (today) "今天" else simpleDateFormat.format(skycon.date)
             val sky = getSky(skycon.value)
             skyIcon.setImageResource(sky.icon)
             skyInfo.text = sky.info
