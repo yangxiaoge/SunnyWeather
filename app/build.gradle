@@ -17,13 +17,7 @@ android {
     }
 
     signingConfigs {
-        debug {
-            storeFile file(KEY_PATH)
-            storePassword STORE_PASSWORD
-            keyAlias = ALIAS_NAME
-            keyPassword KEY_PASSWORD
-        }
-        release {
+        config {
             storeFile file(KEY_PATH)
             storePassword STORE_PASSWORD
             keyAlias = ALIAS_NAME
@@ -34,13 +28,13 @@ android {
     buildTypes {
         debug{
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.release
+            signingConfig signingConfigs.config
         }
         release {
             debuggable true
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.release
+            signingConfig signingConfigs.config
         }
     }
 
@@ -73,6 +67,7 @@ dependencies {
 
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'
     implementation 'com.google.android.material:material:1.1.0'
     implementation 'com.squareup.retrofit2:retrofit:2.8.1'

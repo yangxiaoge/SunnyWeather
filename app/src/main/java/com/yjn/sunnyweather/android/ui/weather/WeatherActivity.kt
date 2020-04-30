@@ -11,6 +11,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Observer
@@ -72,8 +73,8 @@ class WeatherActivity : AppCompatActivity() {
         })
         //刷新进度条颜色
         swipeRefresh.setColorSchemeColors(
-            resources.getColor(R.color.colorPrimary),
-            resources.getColor(R.color.colorAccent)
+            ContextCompat.getColor(this, R.color.colorPrimary),
+            ContextCompat.getColor(this, R.color.colorAccent)
         )
         //立刻刷新
         refreshWeather()
