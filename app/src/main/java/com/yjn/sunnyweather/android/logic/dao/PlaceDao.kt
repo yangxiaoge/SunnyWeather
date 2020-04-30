@@ -21,7 +21,7 @@ object PlaceDao {
         }
     }
 
-    fun getSavedPlace() =
+    fun getSavedPlace(): Place =
         sharedPreferences().getString("place", "")
             .let { Gson().fromJson(it, Place::class.java) }
 
