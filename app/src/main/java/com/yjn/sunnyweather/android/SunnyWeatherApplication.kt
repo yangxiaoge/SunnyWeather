@@ -13,7 +13,7 @@ import android.content.Context
  */
 class SunnyWeatherApplication : Application() {
     companion object {
-        const val CAIYUN_TOKEN = "TAkhjf8d1nlSlspN"; //彩云天气申请到的令牌值
+        const val CAIYUN_TOKEN = "3FCXcAGwfYfcly7k"; //彩云天气申请到的令牌值
 
         lateinit var context: Context
     }
